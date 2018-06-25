@@ -1,0 +1,17 @@
+#
+# options for xsdcxx
+# 
+std c++11
+include-prefix plotml
+hxx-suffix -binding.hpp
+ixx-suffix -binding.ipp
+cxx-suffix -binding.cpp
+fwd-suffix -binding-fwd.hpp
+generate-serialization
+generate-ostream
+generate-doxygen
+generate-comparison
+generate-from-base-ctor
+generate-inline
+generate-forward
+omit-default-attributes

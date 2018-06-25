@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://sabjohnso.github.io/2018/PlotML"
+	   elementFormDefault="qualified"
+	   attributeFormDefault="unqualified"
+	   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	   xmlns:h="http://www.w3.org/1999/xhtml"
+	   xmlns="http://sabjohnso.github.io/2018/PlotML">
+  <xs:element name="plotData" type="PlotData"/>
+  
+  <xs:complexType name="PlotData">
+    <xs:choice>
+      <xs:element name="curves" type="Curves"/>
+    </xs:choice>
+  </xs:complexType>
+  
+  <xs:complexType name="Curves">
+    <xs:sequence>
+      <xs:element name="axisStyle" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="curve"  type="Curve2D" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Curve2D">
+    <xs:sequence>
+      <xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="lineWidth" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="lineColor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="lineStyle" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="markerStyle" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="markerColor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="markerFill" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="d" type="Scalar1D" minOccurs="2" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Scalar1D">
+    <xs:sequence/>
+    <xs:attributeGroup ref="Coordinate1D"/>
+    <xs:attributeGroup ref="Scalar"/>
+  </xs:complexType>
+
+  <xs:attributeGroup name="Coordinate1D">
+    <xs:attribute name="x" type="xs:double" use="required"/>
+  </xs:attributeGroup>
+
+  <xs:attributeGroup name="Coordinate2D">
+    <xs:attribute name="x" type="xs:double" use="required"/>    
+    <xs:attribute name="y" type="xs:double" use="required"/>
+  </xs:attributeGroup>
+
+  <xs:attributeGroup name="Coordinate3D">
+    <xs:attribute name="x" type="xs:double" use="required"/>    
+    <xs:attribute name="y" type="xs:double" use="required"/>
+    <xs:attribute name="z" type="xs:double" use="required"/>
+  </xs:attributeGroup>
+
+  <xs:attributeGroup name="Scalar">
+    <xs:attribute name="p" type="xs:double" use="required"/>
+  </xs:attributeGroup>
+
+  <xs:attributeGroup name="Vector2D">
+    <xs:attribute name="u" type="xs:double" use="required"/>
+    <xs:attribute name="v" type="xs:double" use="required"/>
+  </xs:attributeGroup>
+  
+  <xs:attributeGroup name="Vector3D">
+    <xs:attribute name="u" type="xs:double" use="required"/>
+    <xs:attribute name="v" type="xs:double" use="required"/>
+    <xs:attribute name="w" type="xs:double" use="required"/>
+  </xs:attributeGroup>
+
+  <xs:attributeGroup name="Tensor2D">
+    <xs:attribute name="txx" type="xs:double" use="required"/>
+    <xs:attribute name="tyy" type="xs:double" use="required"/>
+    <xs:attribute name="txy" type="xs:double" use="required"/>
+  </xs:attributeGroup>
+
+  <xs:attributeGroup name="Tensor3D">
+    <xs:attribute name="txx" type="xs:double" use="required"/>
+    <xs:attribute name="tyy" type="xs:double" use="required"/>
+    <xs:attribute name="tzz" type="xs:double" use="required"/>
+    <xs:attribute name="txy" type="xs:double" use="required"/>
+    <xs:attribute name="tyz" type="xs:double" use="required"/>
+    <xs:attribute name="tzx" type="xs:double" use="required"/>
+  </xs:attributeGroup>
+  
+</xs:schema>

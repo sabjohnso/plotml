@@ -34,8 +34,10 @@ add_library( plotml SHARED
   plotml-binding.cpp
   plotml-binding.hpp
   plotml-binding-fwd.hpp )
-
 target_link_libraries( plotml ${XercesC_LIBRARY_RELEASE})
+
+add_executable( plotml_validate  plotml_validate.cpp )
+target_link_libraries( plotml_validate plotml ${XercesC_LIBRARY_RELEASE})
 
 
 install( FILES
@@ -44,6 +46,15 @@ install( FILES
   ${CMAKE_CURRENT_BINARY_DIR}/plotml-binding-fwd.hpp
   plotml.hpp
   DESTINATION ${PLOTML_INSTALL_INCLUDE_DIR})
+
+install( TARGETS
+  plotml
+  DESTINATION ${PLOTML_INSTALL_LIBRARY_DIR})
+
+install( TARGETS
+  plotml_validate
+  DESTINATION ${PLOTML_INSTALL_BIN_DIR})
+  
 
 install( FILES
   ${CMAKE_CURRENT_BINARY_DIR}/plotml.xsd

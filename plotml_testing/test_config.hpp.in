@@ -1,0 +1,14 @@
+#ifndef TEST_CONFIG_HPP_INCLUDED_1089378507025448136
+#define TEST_CONFIG_HPP_INCLUDED_1089378507025448136 1
+
+namespace PlotML
+{
+  namespace Testing
+  {
+
+    constexpr char data_path[] = "${CMAKE_CURRENT_SOURCE_DIR}/data";
+    
+  } // end of namespace Testing
+} // end of namespace PlotML
+
+#endif // !defined TEST_CONFIG_HPP_INCLUDED_1089378507025448136

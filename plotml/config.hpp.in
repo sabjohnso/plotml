@@ -21,8 +21,8 @@ namespace PlotML
     // ... Schema location information
     // 
   
-    constexpr char install_schema_path[]="${PLOTML_INSTALL_INCLUDE_DIR}/${PLOTML_SCHEMA_NAME}";
-    constexpr char build_schema_path[]="${PLOTML_BINARY_DIR}/plotml/${PLOTML_SCHEMA_NAME}";
+    constexpr char install_schema_path[]="file://${CMAKE_INSTALL_PREFIX}${PLOTML_INSTALL_INCLUDE_DIR}/${PLOTML_SCHEMA_NAME}";
+    constexpr char build_schema_path[]="file://${CMAKE_CURRENT_BINARY_DIR}/${PLOTML_SCHEMA_NAME}";
 
     
   } // end of namespace Config  

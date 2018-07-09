@@ -3,10 +3,8 @@
 	   elementFormDefault="qualified"
 	   attributeFormDefault="unqualified"
 	   xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	   xmlns:h="http://www.w3.org/1999/xhtml"
 	   xmlns="http://sabjohnso.github.io/2018/PlotML">
   <xs:element name="plotData" type="PlotData"/>
-  
   <xs:complexType name="PlotData">
     <xs:choice>
       <xs:element name="curves" type="Curves"/>
@@ -18,20 +16,46 @@
       <xs:element name="axisStyle" type="xs:string" minOccurs="0" maxOccurs="1"/>
       <xs:element name="curve"  type="Curve2D" minOccurs="1" maxOccurs="unbounded"/>
     </xs:sequence>
+    <xs:attributeGroup ref="PlotAttributes"/>
   </xs:complexType>
+
+  <xs:attributeGroup name="PlotAttributes">
+    <xs:attribute name="title" type="xs:string" use="optional"/>
+    <xs:attribute name="xmin" type="xs:double" use="optional"/>
+    <xs:attribute name="xmax" type="xs:double" use="optional"/>
+    <xs:attribute name="ymin" type="xs:double" use="optional"/>
+    <xs:attribute name="ymax" type="xs:double" use="optional"/>
+    <xs:attribute name="width" type="xs:double" use="optional"/>
+    <xs:attribute name="legend-anchor" type="LegendAnchor"/>
+  </xs:attributeGroup>
+
 
   <xs:complexType name="Curve2D">
     <xs:sequence>
-      <xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1"/>
-      <xs:element name="lineWidth" type="xs:string" minOccurs="0" maxOccurs="1"/>
-      <xs:element name="lineColor" type="xs:string" minOccurs="0" maxOccurs="1"/>
-      <xs:element name="lineStyle" type="xs:string" minOccurs="0" maxOccurs="1"/>
-      <xs:element name="markerStyle" type="xs:string" minOccurs="0" maxOccurs="1"/>
-      <xs:element name="markerColor" type="xs:string" minOccurs="0" maxOccurs="1"/>
-      <xs:element name="markerFill" type="xs:string" minOccurs="0" maxOccurs="1"/>
       <xs:element name="d" type="Scalar1D" minOccurs="2" maxOccurs="unbounded"/>
     </xs:sequence>
+    <xs:attributeGroup ref="Label"/>
+    <xs:attributeGroup ref="LineType"/>
+    <xs:attributeGroup ref="MarkerType"/>
   </xs:complexType>
+
+  <xs:attributeGroup name="Label">
+    <xs:attribute name="label" type="xs:string" use="optional"/>
+  </xs:attributeGroup>
+  
+
+  <xs:attributeGroup name="MarkerType">
+      <xs:attribute name="markerStyle" type="xs:string" use="optional"/>
+      <xs:attribute name="markerColor" type="xs:string" use="optional"/>
+      <xs:attribute name="markerFillColor" type="xs:string" use="optional"/>
+      <xs:attribute name="markerAlpha" type="xs:double" use="optional"/>
+  </xs:attributeGroup>
+
+  <xs:attributeGroup name="LineType">
+    <xs:attribute name="lineWidth" type="xs:string" use="optional"/>
+    <xs:attribute name="lineColor" type="xs:string" use="optional"/>
+    <xs:attribute name="lineStyle" type="xs:string" use="optional"/>
+  </xs:attributeGroup>
 
   <xs:complexType name="Scalar1D">
     <xs:sequence/>
@@ -83,5 +107,20 @@
     <xs:attribute name="tyz" type="xs:double" use="required"/>
     <xs:attribute name="tzx" type="xs:double" use="required"/>
   </xs:attributeGroup>
+
+
+  <xs:simpleType name="LegendAnchor">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="top-left"/>
+      <xs:enumeration value="top"/>
+      <xs:enumeration value="top-right"/>
+      <xs:enumeration value="left"/>
+      <xs:enumeration value="center"/>
+      <xs:enumeration value="right"/>
+      <xs:enumeration value="bottom-left"/>
+      <xs:enumeration value="bottom"/>
+      <xs:enumeration value="bottom-right"/>
+    </xs:restriction>
+  </xs:simpleType>
   
 </xs:schema>

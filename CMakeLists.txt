@@ -35,9 +35,15 @@ if( NOT PLOTML_INSTALL_SCHEMA_DIR)
 endif( NOT PLOTML_INSTALL_SCHEMA_DIR)
 
 if( NOT PLOTML_INSTALL_LIBRARY_DIR)
-  set( PLOTML_INSTALL_LIBRARY_DIR share/schema
+  set( PLOTML_INSTALL_LIBRARY_DIR lib
     CACHE PATH "Path for installation of library files" )
 endif( NOT PLOTML_INSTALL_LIBRARY_DIR)
+
+
+if( NOT PLOTML_INSTALL_BIN_DIR )
+  set( PLOTML_INSTALL_BIN_DIR bin
+    CACHE PATH "Path for installation of executable files" )
+endif( NOT PLOTML_INSTALL_BIN_DIR )
 
 
 

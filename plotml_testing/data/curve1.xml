@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<plt:plotData xmlns:plt="http://sabjohnso.github.io/2018/PlotML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://sabjohnso.github.io/2018/PlotML file:///home/sbj/Sandbox/plotml/build/release/plotml/plotml.xsd">
+  <plt:curves title="Test Plot" xmax="9" xmin="0">
+    <plt:curve label="Test Curve">
+      <plt:d p="0" x="0"/>
+      <plt:d p="1" x="1"/>
+      <plt:d p="4" x="2"/>
+      <plt:d p="9" x="3"/>
+      <plt:d p="16" x="4"/>
+      <plt:d p="25" x="5"/>
+      <plt:d p="36" x="6"/>
+      <plt:d p="49" x="7"/>
+      <plt:d p="64" x="8"/>
+      <plt:d p="81" x="9"/>
+    </plt:curve>
+  </plt:curves>
+</plt:plotData>

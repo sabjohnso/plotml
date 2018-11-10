@@ -39,26 +39,37 @@ target_link_libraries( plotml ${XercesC_LIBRARY_RELEASE})
 add_executable( plotml_validate  plotml_validate.cpp )
 target_link_libraries( plotml_validate plotml ${XercesC_LIBRARY_RELEASE})
 
-
 install( FILES
   ${CMAKE_CURRENT_BINARY_DIR}/config.hpp
   ${CMAKE_CURRENT_BINARY_DIR}/plotml-binding.hpp
   ${CMAKE_CURRENT_BINARY_DIR}/plotml-binding-fwd.hpp
   plotml.hpp
-  DESTINATION ${PLOTML_INSTALL_INCLUDE_DIR})
-
-install( TARGETS
-  plotml
-  DESTINATION ${PLOTML_INSTALL_LIBRARY_DIR})
-
-install( TARGETS
-  plotml_validate
-  DESTINATION ${PLOTML_INSTALL_BIN_DIR})
-  
+  DESTINATION ${PLOTML_INSTALL_INCLUDEDIR})
 
 install( FILES
   ${CMAKE_CURRENT_BINARY_DIR}/plotml.xsd
-  DESTINATION ${PLOTML_INSTALL_SCHEMA_DIR})
+  DESTINATION ${PLOTML_INSTALL_SCHEMADIR})
 
-install( TARGETS plotml
-  DESTINATION ${PLOTML_INSTALL_LIBRARY_DIR})
+
+install( TARGETS
+  plotml
+  EXPORT plotml_targets
+  DESTINATION ${PLOTML_INSTALL_LIBDIR})
+
+install( TARGETS
+  plotml_validate
+  DESTINATION ${PLOTML_INSTALL_BINDIR})
+
+set( PLOTML_TARGETS_NAME plotml_targets.cmake)
+
+install(
+  EXPORT
+    plotml_targets
+  NAMESPACE
+    plotml::
+  FILE 
+    ${PLOTML_TARGETS_NAME}
+  DESTINATION
+    ${PLOTML_INSTALL_CONFIGDIR})
+
+configure_file( plotml-config.cmake.in plotml-config.cmake @ONLY)

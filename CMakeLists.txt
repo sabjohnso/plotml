@@ -4,10 +4,10 @@
 
 cmake_minimum_required( VERSION 3.7 )
 
-project( PLOTML )
-set( PLOTML_MAJOR 0)
-set( PLOTML_MINOR 1)
-set( PLOTML_UPDATE 0)
+project( PLOTML  VERSION 0.1.0 LANGUAGES CXX )
+set( PLOTML_MAJOR ${PROJECT_VERSION_MAJOR})
+set( PLOTML_MINOR ${PROJECT_VERSION_MINOR})
+set( PLOTML_UPDATE ${PROJECT_VERSION_PATCH})
 set( PLOTML_VERSION plotml-${PLOTML_MAJOR}.${PLOTML_MINOR} )
 set( PLOTML_VERSION_UPDATE ${PLOTML_VERSION}.${PLOTML_UPDATE} )
 
@@ -24,31 +24,28 @@ include_directories(
   ${PLOTML_BINARY_DIR}
   ${XercesC_INCLUDE_DIRS})
 
-if( NOT PLOTML_INSTALL_INCLUDE_DIR)
-  set( PLOTML_INSTALL_INCLUDE_DIR include/plotml
-    CACHE PATH "Path for installation of header files" )
-endif( NOT PLOTML_INSTALL_INCLUDE_DIR)
+include(GNUInstallDirs)
 
-if( NOT PLOTML_INSTALL_SCHEMA_DIR)
-  set( PLOTML_INSTALL_SCHEMA_DIR share/schema
-    CACHE PATH "Path for installation of schema files" )
-endif( NOT PLOTML_INSTALL_SCHEMA_DIR)
+set( PLOTML_INSTALL_INCLUDEDIR ${CMAKE_INSTALL_INCLUDEDIR}
+  CACHE PATH "Path for installation of header files" )
 
-if( NOT PLOTML_INSTALL_LIBRARY_DIR)
-  set( PLOTML_INSTALL_LIBRARY_DIR lib
-    CACHE PATH "Path for installation of library files" )
-endif( NOT PLOTML_INSTALL_LIBRARY_DIR)
+set( PLOTML_INSTALL_SCHEMADIR ${CMAKE_INSTALL_DATAROOTDIR}/schema
+  CACHE PATH "Path for installation of schema files" )
 
+set( PLOTML_INSTALL_LIBDIR ${CMAKE_INSTALL_LIBDIR}
+  CACHE PATH "Path for installation of library files" )
 
-if( NOT PLOTML_INSTALL_BIN_DIR )
-  set( PLOTML_INSTALL_BIN_DIR bin
-    CACHE PATH "Path for installation of executable files" )
-endif( NOT PLOTML_INSTALL_BIN_DIR )
+set( PLOTML_INSTALL_BINDIR ${CMAKE_INSTALL_BINDIR}
+  CACHE PATH "Path for installation of executable files" )
+
+set( PLOTML_INSTALL_CONFIGDIR ${CMAKE_INSTALL_LIBDIR}/${PLOTML_VERSION}
+  CACHE PATH "Path for installation of configuration files" )
 
 
-
+#
+# ... Walk the source tree
+#
 add_subdirectory( plotml )
-
 
 
 #
@@ -60,23 +57,12 @@ if( BUILD_PLOTML_TESTING )
 endif( BUILD_PLOTML_TESTING )
 
 
-
 #
 # ... Documentation
 #
 if( BUILD_PLOTML_DOCUMENTATION )
 
   configure_file( Doxyfile.in Doxyfile )
-
-  if( NOT PLOTML_INSTALL_DOC_DIR)
-    set( PLOTML_INSTALL_DOC_DIR share/doc/${PLOTML_VERSION}
-      CACHE PATH "Path for installation of documentation files" )
-  endif( NOT PLOTML_INSTALL_DOC_DIR)
-
-  if( NOT PLOTML_INTALL_MAN_DIR)
-    set( PLOTML_INTALL_MAN_DIR include/plotml
-      CACHE PATH "Path for installation of man files" )
-  endif( NOT PLOTML_INTALL_MAN_DIR)
 
   find_package( Doxygen REQUIRED )
 
@@ -91,8 +77,15 @@ if( BUILD_PLOTML_DOCUMENTATION )
     plotml_documentation ALL
     DEPENDS ${PLOTML_BINARY_DIR}/doxygen.log )
 
-  install( DIRECTORY ${PLOTML_BINARY_DIR}/doc/html DESTINATION ${PLOTML_INSTALL_DOC_DIR} )
-  install( DIRECTORY ${PLOTML_BINARY_DIR}/doc/man DESTINATION ${PLOTML_INTALL_MAN_DIR} )
+  set( PLOTML_INSTALL_DOCDIR ${CMAKE_INSTALL_DOCDIR}
+    CACHE PATH "Path for installation of documentation files" )
+
+  set( PLOTML_INTALL_MANDIR ${CMAKE_INSTALL_MANDIR}
+    CACHE PATH "Path for installation of man files" )
+
+  install( DIRECTORY ${PLOTML_BINARY_DIR}/doc/html DESTINATION ${PLOTML_INSTALL_DOCDIR} )
+  install( DIRECTORY ${PLOTML_BINARY_DIR}/doc/man DESTINATION ${PLOTML_INTALL_MANDIR} )
+
 endif( BUILD_PLOTML_DOCUMENTATION )
 
 # end of build definition for plotml

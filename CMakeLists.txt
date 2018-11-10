@@ -19,10 +19,8 @@ set( CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake )
 find_package( XercesC REQUIRED )
 find_package( CodeSynthesisXSD )
 
-include_directories( 
-  ${PLOTML_SOURCE_DIR}
-  ${PLOTML_BINARY_DIR}
-  ${XercesC_INCLUDE_DIRS})
+add_subdirectory( gtest_external )
+
 
 include(GNUInstallDirs)
 

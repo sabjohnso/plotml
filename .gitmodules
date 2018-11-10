@@ -1,0 +1,3 @@
+[submodule "gtest_external"]
+	path = gtest_external
+	url = https://github.com/sabjohnso/gtest_external.git

@@ -1,11 +1,23 @@
 configure_file( test_config.hpp.in test_config.hpp )
 
-macro( plotml_add_simple_test  name )
-  add_executable( ${name}_test ${name}_test.cpp )
-  target_link_libraries( ${name}_test plotml ${XercesC_LIBRARY_RELEASE})
-  add_test( ${name} ${name}_test )
-endmacro( plotml_add_simple_test  name )
+function( plotml_add_test )
+  set( optkeys "")
+  set( valkeys NAME EXENAME)
+  set( multikeys SOURCE_FILES DEPENDENCIES)
+  cmake_parse_arguments( TEST "${optkeys}" "${valkeys}" "${multikeys}" ${ARGN})
 
-plotml_add_simple_test( write_curve )
-plotml_add_simple_test( read_curve )
+  add_executable( ${TEST_EXENAME} ${TEST_SOURCE_FILES})
+  if( TEST_DEPENDENCIES )
+    target_link_libraries( ${TEST_EXENAME} ${TEST_DEPENDENCIES})
+  endif()
+  add_test( ${TEST_NAME} ${TEST_EXENAME})
+  
+endfunction()
 
+plotml_add_test( NAME write_curve EXENAME write_curve_test
+  SOURCE_FILES write_curve_test.cpp
+  DEPENDENCIES plotml google::test_main )
+
+plotml_add_test( NAME read_curve EXENAME read_curve_test
+  SOURCE_FILES read_curve_test.cpp
+  DEPENDENCIES plotml google::test_main )

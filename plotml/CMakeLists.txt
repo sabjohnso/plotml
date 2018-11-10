@@ -36,6 +36,13 @@ add_library( plotml SHARED
   plotml-binding-fwd.hpp )
 target_link_libraries( plotml ${XercesC_LIBRARY_RELEASE})
 
+target_include_directories( plotml
+  PUBLIC  
+   $<BUILD_INTERFACE:${PLOTML_SOURCE_DIR}>
+   $<BUILD_INTERFACE:${PLOTML_BINARY_DIR}>
+   $<INSTALL_INTERFACE:${PLOTML_INSTALL_INCLUDEDIR}>
+  PRIVATE ${XercesC_INCLUDE_DIRS})
+
 add_executable( plotml_validate  plotml_validate.cpp )
 target_link_libraries( plotml_validate plotml ${XercesC_LIBRARY_RELEASE})
 

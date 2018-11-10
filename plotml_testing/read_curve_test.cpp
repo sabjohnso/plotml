@@ -4,6 +4,12 @@
 #include <string>
 #include <fstream>
 
+
+//
+// ... Testing header files
+//
+#include <gtest/gtest.h>
+
 //
 // ... PlotML header files
 //
@@ -58,10 +64,9 @@ namespace PlotML
   } // end of namespace Testing
 } // end of namespace PlotML
 
-int
-main( int, char** )
+TEST( read_curve, basic )
 {
   int accum = 0;
   accum += PlotML::Testing::Read_curve_test();
-  return accum;
+  EXPECT_EQ( accum, 0 );
 }

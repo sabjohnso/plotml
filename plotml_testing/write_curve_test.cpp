@@ -12,6 +12,12 @@
 #include <iostream>
 
 //
+// ... Testing header files
+//
+#include <gtest/gtest.h>
+
+
+//
 // ... PlotML header files
 //
 #include <plotml/config.hpp>
@@ -23,6 +29,7 @@
 //
 #include <plotml_testing/test_macros.hpp>
 #include <plotml_testing/test_config.hpp>
+
 
 namespace PlotML
 {
@@ -113,11 +120,10 @@ namespace PlotML
 } // end of namespace PlotML
 
 
-int
-main( int, char** )
+TEST( write_curves_test, simple_test )
 {
-  int accum = 0;
-  accum += PlotML::Testing::Write_curves_test();
-  return accum;
+    int accum = 0;
+    accum += PlotML::Testing::Write_curves_test();
+    EXPECT_EQ( accum, 0 );
 }
 

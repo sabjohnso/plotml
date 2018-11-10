@@ -22,7 +22,7 @@ find_package( CodeSynthesisXSD )
 include_directories( 
   ${PLOTML_SOURCE_DIR}
   ${PLOTML_BINARY_DIR}
-  ${XercesC_INCLUDE_DIRS} )
+  ${XercesC_INCLUDE_DIRS})
 
 if( NOT PLOTML_INSTALL_INCLUDE_DIR)
   set( PLOTML_INSTALL_INCLUDE_DIR include/plotml

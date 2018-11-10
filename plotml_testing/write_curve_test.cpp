@@ -120,3 +120,4 @@ main( int, char** )
   accum += PlotML::Testing::Write_curves_test();
   return accum;
 }
+
